@@ -1,0 +1,16 @@
+pipeline{
+    agent any
+        tools{
+            jdk 'jdk21'
+            maven 'maven'
+        }
+        stages{
+            stage('Build Maven'){
+                steps{
+                    checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/LAKSHANA21/jenkinsrepo.git']])
+                    bat 'mvn clean install'
+                }
+            }
+           
+        }
+}
